@@ -21,7 +21,7 @@ const multiply = (a, b) => {
   return a * b;
 };
 const divide = (a, b) => {
-  if (b !== 0) {
+  if (b !== "0") {
     return a / b;
   } else {
     return console.log("Divisão inválida. Impossível divisão por zero.");
@@ -40,25 +40,27 @@ do {
 
   if (operator === 5) {
     console.log("Fim do cálculo. Volte sempre.");
-  } else if (operator <= 4 || operator >= 1) {
+    break;
+  } else if (operator <= 4 && operator >= 1) {
     const num1 = createMenu("Digite o primeiro número: ");
     const num2 = createMenu("Digite o segundo número: ");
-    switch (operator) {
-      case 1:
-        console.log(`O resultado é ${add(num1, num2)}`);
-        break;
-      case 2:
-        console.log(`O resultado é ${minus(num1, num2)}`);
-        break;
-      case 3:
-        console.log(`O resultado é ${multiply(num1, num2)}`);
-        break;
-      case 4:
-        console.log(`O resultado é ${divide(num1, num2)}`);
-        break;
-    }
     if (isNaN(num1) || isNaN(num2)) {
       console.log("Pelo menos um destes números é inválido. Digite novamente.");
+    } else {
+      switch (operator) {
+        case 1:
+          console.log(`O resultado é ${add(num1, num2)}`);
+          break;
+        case 2:
+          console.log(`O resultado é ${minus(num1, num2)}`);
+          break;
+        case 3:
+          console.log(`O resultado é ${multiply(num1, num2)}`);
+          break;
+        case 4:
+          console.log(`O resultado é ${divide(num1, num2)}`);
+          break;
+      }
     }
   } else {
     console.log("Cálculo inválido. Tente novamente um número entre 1 a 5.");
