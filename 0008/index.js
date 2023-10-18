@@ -23,8 +23,6 @@ const multiply = (a, b) => {
 const divide = (a, b) => {
   if (b !== "0") {
     return a / b;
-  } else {
-    return console.log("Divisão inválida. Impossível divisão por zero.");
   }
 };
 
@@ -58,8 +56,13 @@ do {
           console.log(`O resultado é ${multiply(num1, num2)}`);
           break;
         case 4:
-          console.log(`O resultado é ${divide(num1, num2)}`);
-          break;
+          if (num2 === "0") {
+            console.log("Divisão inválida. Impossível divisão por zero.");
+            break;
+          } else {
+            console.log(`O resultado é ${divide(num1, num2)}`);
+            break;
+          }
       }
     }
   } else {
