@@ -7,6 +7,8 @@ operação.
 3- Deve aparecer um espaço para digitar o segundo número.
 4- Para finalizar, a calculadora deve ser capaz de 
 finalizar o cálculo ao apertar o botão de enter.
+5- A calculadora deve ser capaz de continuar o cálculo
+até o usuário dar uma instrução de parada.
 */
 
 const prompt = require("prompt-sync")({ sigint: true });
@@ -29,22 +31,23 @@ const divide = (a, b) => {
   }
 };
 
-
-export const calc = () => {
-  const num1 = createMenu("Digite o primeiro número: ");
+const calc = () => {
+  const num1 = Number(createMenu("Digite o primeiro número: "));
   const operator = createMenu("Digite a operação: ");
-  const num2 = createMenu("Digite o segundo número: ");
+  const num2 = Number(createMenu("Digite o segundo número: "));
   if (isNaN(num1) || isNaN(num2)) {
     console.log("Pelo menos um destes números é inválido. Digite novamente.");
   }
 
   if (operator === "+") {
-    return add(num1, num2);
+    return console.log(`O resultado é: ${add(num1, num2)}`);
   } else if (operator === "-") {
-    return minus(num1, num2);
+    return console.log(`O resultado é: ${minus(num1, num2)}`);
   } else if (operator === "*") {
-    return multiply(num1, num2);
+    return console.log(`O resultado é: ${multiply(num1, num2)}`);
   } else if (operator === "/") {
-    return divide(num1, num2);
+    return console.log(`O resultado é:${divide(num1, num2)}`);
   }
 };
+
+calc();
