@@ -8,7 +8,14 @@ operação.
 4- Para finalizar, a calculadora deve ser capaz de 
 finalizar o cálculo ao apertar o botão de enter.
 5- A calculadora deve ser capaz de continuar o cálculo
-até o usuário dar uma instrução de parada.
+até o usuário dar uma instrução de parada (loop).
+6- A calculadora deve prever caso o usuário 
+utilize um operador diferente do operador sugerido
+e enviar uma mensagem de erro.
+7- A calculadora deve emitir uma mensagem de erro
+em caso de divisão cujo o segundo número seja igual a zero
+e impedir que o cálculo seja feito.
+
 */
 
 const prompt = require("prompt-sync")({ sigint: true });
@@ -46,7 +53,13 @@ const calc = () => {
   } else if (operator === "*") {
     return console.log(`O resultado é: ${multiply(num1, num2)}`);
   } else if (operator === "/") {
-    return console.log(`O resultado é:${divide(num1, num2)}`);
+    if (num2 === 0) {
+      return console.log("Cálculo inválido. Impossível divisão por zero");
+    } else {
+      return console.log(`O resultado é:${divide(num1, num2)}`);
+    }
+  } else {
+    console.log("Operador inválido. Digite novamente.");
   }
 };
 
