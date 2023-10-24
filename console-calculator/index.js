@@ -42,15 +42,31 @@ const divide = (a, b) => {
 
 const calc = () => {
   let shouldContinue = true;
+  let firstCalculation = true;
 
   do {
-    const num1 = Number(createMenu("Digite o primeiro número: "));
-    const operator = createMenu("Digite a operação: ");
-    const num2 = Number(createMenu("Digite o segundo número: "));
+    let previousResult = 0;
+    let result;
+
+    let num1;
+    let operator;
+    let num2;
+
+    if (firstCalculation) {
+      num1 = Number(createMenu("Digite o primeiro número: "));
+      firstCalculation = false;
+    } else if (shouldContinue) {
+      num1 = previousResult;
+    } else {
+      num1 = Number(createMenu("Digite o primeiro número: "));
+    }
+
+    operator = createMenu("Digite a operação: ");
+    num2 = Number(createMenu("Digite o segundo número: "));
+
     if (isNaN(num1) || isNaN(num2)) {
       console.log("Pelo menos um destes números é inválido. Digite novamente.");
     } else {
-      let result;
       switch (operator) {
         case "+":
           result = add(num1, num2);
@@ -73,16 +89,26 @@ const calc = () => {
           console.log("Operador inválido. Digite novamente.");
           break;
       }
-      console.log(result);
     }
+    console.log(result);
+    previousResult = result;
 
-    const shouldExitorContinue =
+    const shouldExitOrContinue =
       createMenu(`Deseja sair? Digite 'S' caso queira parar. 
     Caso queira continuar, digite 'C': `);
-    if (shouldExitorContinue.trim().toUpperCase() === "S") {
+    if (shouldExitOrContinue.trim().toUpperCase() === "S") {
       shouldContinue = false;
-    } else if (shouldExitorContinue.trim().toUpperCase() === "C") {
-      shouldContinue = true;
+    } else if (shouldExitOrContinue.trim().toUpperCase() === "C") {
+      const userInput =
+        createMenu(`Deseja utilizar o último resultado para continuar
+      a conta?
+      Se sim, digite 'C'. Caso queira um novo calculo, digite 'N': `);
+      if (userInput.trim().toUpperCase() === "N") {
+        shouldContinue = true;
+        firstCalculation = true;
+      } else if (userInput.trim().toUpperCase() === "C") {
+        shouldContinue = true;
+      }
     }
   } while (shouldContinue);
 };
