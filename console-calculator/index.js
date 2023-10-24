@@ -50,37 +50,40 @@ const calc = () => {
     if (isNaN(num1) || isNaN(num2)) {
       console.log("Pelo menos um destes números é inválido. Digite novamente.");
     } else {
+      let result;
       switch (operator) {
         case "+":
-          console.log(`O resultado é: ${add(num1, num2)}`);
+          result = add(num1, num2);
           break;
         case "-":
-          console.log(`O resultado é: ${minus(num1, num2)}`);
+          result = minus(num1, num2);
           break;
         case "*":
-          console.log(`O resultado é: ${multiply(num1, num2)}`);
+          result = multiply(num1, num2);
           break;
         case "/":
           if (num2 === 0) {
             console.log("Cálculo inválido. Impossível divisão por zero");
             break;
           } else {
-            console.log(`O resultado é:${divide(num1, num2)}`);
+            result = divide(num1, num2);
             break;
           }
         default:
           console.log("Operador inválido. Digite novamente.");
           break;
       }
+      console.log(result);
     }
 
-    const shouldExitorContinue = createMenu(`Deseja sair? Digite 'S' caso queira parar. 
+    const shouldExitorContinue =
+      createMenu(`Deseja sair? Digite 'S' caso queira parar. 
     Caso queira continuar, digite 'C': `);
     if (shouldExitorContinue.trim().toUpperCase() === "S") {
       shouldContinue = false;
     } else if (shouldExitorContinue.trim().toUpperCase() === "C") {
       shouldContinue = true;
-    } 
+    }
   } while (shouldContinue);
 };
 
