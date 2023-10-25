@@ -43,9 +43,9 @@ const divide = (a, b) => {
 const calc = () => {
   let shouldContinue = true;
   let firstCalculation = true;
+  let previousResult = 0;
 
   do {
-    let previousResult = 0;
     let result;
 
     let num1;
@@ -57,8 +57,6 @@ const calc = () => {
       firstCalculation = false;
     } else if (shouldContinue) {
       num1 = previousResult;
-    } else {
-      num1 = Number(createMenu("Digite o primeiro número: "));
     }
 
     operator = createMenu("Digite a operação: ");
@@ -108,6 +106,7 @@ const calc = () => {
         firstCalculation = true;
       } else if (userInput.trim().toUpperCase() === "C") {
         shouldContinue = true;
+        console.log(`Resultado anterior: ${previousResult}`);
       }
     }
   } while (shouldContinue);
