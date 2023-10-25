@@ -88,7 +88,10 @@ const calc = () => {
           break;
       }
     }
-    console.log(result);
+    if (result !== undefined) {
+      console.log(result);
+    }
+
     previousResult = result;
 
     const shouldExitOrContinue =
