@@ -90,9 +90,8 @@ const calc = () => {
     }
     if (result !== undefined) {
       console.log(result);
+      previousResult = result;
     }
-
-    previousResult = result;
 
     const shouldExitOrContinue =
       createMenu(`Deseja sair? Digite 'S' caso queira parar. 
